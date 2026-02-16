@@ -1,16 +1,23 @@
 node {
-    stage('Clone') {
-        git branch: 'main', url: 'https://github.com/lefortnuno/jenkins.git'
-        bat 'mvn --version'
-    }
+        stage('Clone') {  
+            checkout scm
+        }
 
-    stage('Build') {
-        bat 'dir'
-        bat 'javac Main.java'
-    }
+        stage('Build Image') { 
+            app = docker.build("xavi/nginx") 
+        }
 
-    stage('Run') {
-        bat 'docker -v'
-        bat 'java Main'
-    }
+        stage('Run Nginx') {  
+            bat 'docker run -d -p 80:80 --name mynginx nginx:latest'
+        }
+
+        stage('Run image') {   
+            bat 'docker ps'
+            bat 'curl http://localhost' 
+            
+        }
+ 
+        stage('Cleanup') {
+            bat 'docker rm -f mynginx'
+        } 
 }

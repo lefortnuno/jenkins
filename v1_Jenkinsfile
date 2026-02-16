@@ -1,0 +1,16 @@
+node {
+    stage('Clone') {
+        git branch: 'main', url: 'https://github.com/lefortnuno/jenkins.git'
+        bat 'mvn --version'
+    }
+
+    stage('Build') {
+        bat 'dir'
+        bat 'javac Main.java'
+    }
+
+    stage('Run') {
+        bat 'docker -v'
+        bat 'java Main'
+    }
+}
