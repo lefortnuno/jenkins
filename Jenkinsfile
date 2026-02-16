@@ -3,6 +3,7 @@ node {
     stage('Clone') {  
         bat 'git clone https://github.com/lefortnuno/dcbs-DigitalCoreBankingSystem.git' 
         bat 'cd dcbs-DigitalCoreBankingSystem'
+        bat 'cd dcbs-DigitalCoreBankingSystem'
         bat 'dir'
     }
 
