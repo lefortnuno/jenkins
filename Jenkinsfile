@@ -16,7 +16,7 @@ node {
     stage('Test') {   
         bat 'docker ps'
         bat 'curl http://localhost' 
-        bat 'timeout /t 30 /nobreak'
+        sleep 30
     }
 
     stage('Cleanup') {
