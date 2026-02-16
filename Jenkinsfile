@@ -1,7 +1,7 @@
 node {
 
     stage('Clone') {  
-        checkout scm
+        bat 'dir'
     }
 
     stage('Build Image') { 
