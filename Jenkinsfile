@@ -19,23 +19,24 @@ node {
         }
     }
     
+    stage('Cleanup Av') { 
+        bat 'docker rm -f user-doc 2>nul || exit 0' 
+        bat 'docker rm -f kafka 2>nul || exit 0' 
+        bat 'docker rm -f zookeeper 2>nul || exit 0' 
+    }
+
     stage('Build Image') {  
         bat 'docker compose build --no-cache'
     }
 
-    stage('Run Containers') {    
-        bat 'docker rm -f user-service 2>nul || exit 0'  
+    stage('Run Containers') {      
         bat 'docker compose up -d'
         sleep 10
     }
 
     stage('Test') {   
-        bat 'docker ps' 
-        bat 'curl http://localhost:7001/users' 
+        bat 'docker ps'  
         bat 'curl http://localhost:7001/actuator/health'
     }
-
-    stage('Cleanup') { 
-        bat 'docker rm -f user-service 2>nul || exit 0' 
-    }
+ 
 }
