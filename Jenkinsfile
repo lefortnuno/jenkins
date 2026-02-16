@@ -1,7 +1,10 @@
 node {
 
     stage('Clone') {  
-        checkout main
+        checkout scm 
+    }
+
+    stage('Verif') {  
         bat 'dir'
     }
 
