@@ -1,6 +1,7 @@
 node {
 
     stage('Clone') {  
+        bat 'dir'
         checkout scm 
         bat 'dir'
     }
