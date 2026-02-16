@@ -1,6 +1,7 @@
 node {
 
     stage('Clone') {  
+        checkout main
         bat 'dir'
     }
 
@@ -23,9 +24,9 @@ node {
 
     stage('Debug Compose') {
         bat 'dir'
-        bat 'type docker-compose.yml'
-        bat 'cd docker-compose'
-        bat 'type docker-compose.yml' 
+        bat 'type dockerCompo.yml'
+        bat 'cd dockerCompo'
+        bat 'type dockerCompo.yml' 
         bat 'cd ..'
     }
 
@@ -38,8 +39,8 @@ node {
     }
     
     stage('Run Containers2') {   
-        bat 'cd docker-compose'  
-        bat 'docker compose -f docker-compose.yml up -d'
+        bat 'cd dockerCompo'  
+        bat 'docker compose -f dockerCompo.yml up -d'
         sleep 10
         bat 'cd ..'
     }
