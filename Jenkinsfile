@@ -1,23 +1,23 @@
 node {
-        stage('Clone') {  
-            checkout scm
-        }
 
-        stage('Build Image') { 
-            app = docker.build("ac2i/nginx") 
-        }
+    stage('Clone') {  
+        checkout scm
+    }
 
-        stage('Run Nginx') {  
-            bat 'docker run -d -p 80:80 --name mynginx nginx:latest'
-        }
+    stage('Build Image') { 
+        bat 'docker build -t ac2i/nginx .'
+    }
 
-        stage('Run image') {   
-            bat 'docker ps'
-            bat 'curl http://localhost' 
-            
-        }
- 
-        stage('Cleanup') {
-            bat 'docker rm -f mynginx'
-        } 
+    stage('Run Container') {   
+        bat 'docker run -d -p 80:80 --name mynginx ac2i/nginx'
+    }
+
+    stage('Test') {   
+        bat 'docker ps'
+        bat 'curl http://localhost' 
+    }
+
+    stage('Cleanup') {
+        bat 'docker rm -f mynginx'
+    }
 }
