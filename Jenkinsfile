@@ -9,6 +9,7 @@ node {
     }
 
     stage('Run Container') {   
+        bat 'docker rm -f mynginx 2>nul || exit 0'
         bat 'docker run -d -p 80:80 --name mynginx ac2i/nginx'
     }
 
@@ -17,7 +18,7 @@ node {
         bat 'curl http://localhost' 
     }
 
-    stage('Cleanup') {
-        bat 'docker rm -f mynginx'
-    }
+    // stage('Cleanup') {
+    //     bat 'docker rm -f mynginx'
+    // }
 }
