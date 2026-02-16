@@ -4,7 +4,7 @@ node {
         }
 
         stage('Build Image') { 
-            app = docker.build("xavi/nginx") 
+            app = docker.build("ac2i/nginx") 
         }
 
         stage('Run Nginx') {  
