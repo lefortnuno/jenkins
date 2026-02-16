@@ -18,7 +18,7 @@ node {
         bat 'curl http://localhost' 
     }
 
-    // stage('Cleanup') {
-    //     bat 'docker rm -f mynginx'
-    // }
+    stage('Cleanup') {
+        bat 'docker rm -f mynginx'
+    }
 }
