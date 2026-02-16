@@ -21,11 +21,21 @@ node {
         bat 'docker compose build --no-cache'
     }
 
+    stage('Debug Compose') {
+        bat 'dir'
+        bat 'type docker-compose.yml'
+    }
+
     stage('Run Containers') {    
         bat 'docker rm -f user-service 2>nul || exit 0'
         bat 'docker rm -f mynginx 2>nul || exit 0'
         bat 'docker run -d -p 80:80 --name mynginx ac2i/nginx'
-        bat 'docker compose up -d'
+        // bat 'docker compose up -d'
+        sleep 5
+    }
+    
+    stage('Run Containers2') {     
+        bat 'docker compose -f docker-compose.yml up -d'
         sleep 10
     }
 
